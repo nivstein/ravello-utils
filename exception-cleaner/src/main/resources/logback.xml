@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true">
+
+	<appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+			<layout class="com.ravello.utils.logs.ExceptionFilteredPatternLayout">
+			<pattern>%date [%level] [%thread] [%file:%line] %msg%n</pattern>
+ 			<include>com.ravello</include> 
+			<includeAllFramesUpToFirstExplicitInclusion>true</includeAllFramesUpToFirstExplicitInclusion>
+			</layout>
+		</encoder>
+	</appender>
+	
+	<root level="info">
+		<appender-ref ref="Console" />
+	</root>
+
+</configuration>
