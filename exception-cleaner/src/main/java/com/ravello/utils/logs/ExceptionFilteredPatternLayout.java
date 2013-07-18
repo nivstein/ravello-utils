@@ -51,9 +51,9 @@ public class ExceptionFilteredPatternLayout extends PatternLayout
     	StackTraceElementProxy[] steOriginalList = throwableProxy.getStackTraceElementProxyArray() ;
     	
     	//Variable to use when we want to show all frames up to the first explicit inclusion
-    	boolean firstExclusiveInclusionAlreadyIncluded = false ;
+    	boolean firstExplicitInclusionAlreadyIncluded = false ;
     	if (!includeAllFramesUpToFirstExplicitInclusion) {
-    		firstExclusiveInclusionAlreadyIncluded = true ;
+    		firstExplicitInclusionAlreadyIncluded = true ;
     	}
     	
     	//Variable to keep where the last explicit inclusion took place
@@ -62,10 +62,10 @@ public class ExceptionFilteredPatternLayout extends PatternLayout
     	for (int i = 0; i < steOriginalList.length; i++) {
     		if (startsWithAnIncludedPattern(steOriginalList[i].getSTEAsString())) { 
     			steInclusionList.add(steOriginalList[i]) ;
-    			firstExclusiveInclusionAlreadyIncluded = true ;
+    			firstExplicitInclusionAlreadyIncluded = true ;
     			lastExplicitInclusion = i ;
     	
-    		} else if (!firstExclusiveInclusionAlreadyIncluded) {
+    		} else if (!firstExplicitInclusionAlreadyIncluded) {
     			//Or if we still haven't found the first explicit included frame
     			steInclusionList.add(steOriginalList[i]) ;
     		} 
